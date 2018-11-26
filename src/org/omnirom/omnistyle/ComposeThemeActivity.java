@@ -26,6 +26,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import java.util.Calendar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,7 @@ public class ComposeThemeActivity extends Activity {
     private static final String NOTIFICATION_OVERLAY_PRIMARY = "org.omnirom.theme.notification.primary";
 
     private Spinner mAccentSpinner;
+    private Switch mThemeSwitch;
     private Spinner mPrimarySpinner;
     private Spinner mNotificationSpinner;
     private List<ThemeInfo> mAccentOverlays;
@@ -174,6 +176,9 @@ public class ComposeThemeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_themes_compose);
 
+        Calendar rightNow = Calendar.getInstance();
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
         mOverlayUtils = new OverlayUtils(this);
 
@@ -184,6 +189,7 @@ public class ComposeThemeActivity extends Activity {
         mAccentSpinner = (Spinner) findViewById(R.id.accent_select);
         mPrimarySpinner = (Spinner) findViewById(R.id.primary_select);
         mNotificationSpinner = (Spinner) findViewById(R.id.notification_select);
+        mThemeSwitch = (Switch) findViewById(R.id.themeSwitch);
 
         mAccentOverlays = new ArrayList();
         final List<String> accentOverlays = new ArrayList();

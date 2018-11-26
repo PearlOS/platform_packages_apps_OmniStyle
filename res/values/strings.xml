@@ -55,6 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="theme_primary">Primary</string>
     <string name="theme_notification">Notification</string>
     <string name="theme_compose">Compose</string>
+    <string name="theme_time">Time based themeing</string>
     <string name="button_apply">Apply</string>
     <string name="overlay_preview_text" translatable="false">Example Text</string>
     <string name="overlay_preview_switch" translatable="false">Example Switch</string>

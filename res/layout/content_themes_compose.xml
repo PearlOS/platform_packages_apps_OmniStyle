@@ -103,6 +103,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     android:layout_weight="5"
                     android:backgroundTint="?android:attr/textColorPrimary"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:orientation="horizontal">
+
+                 <Switch
+                     android:id="@+id/themeSwitch"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="@string/theme_time"
+                     android:checked="false"
+                     android:gravity="left"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
