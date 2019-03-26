@@ -73,6 +73,7 @@ public class OverlayUtils {
         Bitmap mThumbNailBlur;
         boolean mComposePlaceholder;
         boolean mDefaultPlaceholder;
+        boolean mNightDayPlaceholder;
 
         @Override
         public int compareTo(ThemeInfo o) {

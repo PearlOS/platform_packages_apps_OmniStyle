@@ -19,8 +19,12 @@ package org.omnirom.omnistyle;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -47,8 +51,11 @@ import java.util.List;
 
 public class ComposeThemeActivity extends Activity {
     private static final String TAG = "ComposeThemeActivity";
+    private static final String PREFS_NAME = "SharedPrefs";
     private static final boolean DEBUG = true;
     private static final String NOTIFICATION_OVERLAY_PRIMARY = "org.omnirom.theme.notification.primary";
+
+   private AlarmManager am;
 
     private Spinner mAccentSpinner;
     private Switch mThemeSwitch;
@@ -333,6 +340,19 @@ public class ComposeThemeActivity extends Activity {
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final SharedPreferences PrefsReader = getApplicationContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                final SharedPreferences.Editor PrefsWriter = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+                if (PrefsReader.getBoolean("switch", false)) {
+                    PrefsWriter.putBoolean("switch", false);
+                    PrefsWriter.commit();
+                    am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    Intent cancelSunriseIntent = new Intent(getApplicationContext(), SunriseThemeAlarm.class);
+                    Intent cancelSunsetIntent = new Intent(getApplicationContext(), SunsetThemeAlarm.class);
+                    PendingIntent cancelSunrisePendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, cancelSunriseIntent,0);
+                    PendingIntent cancelSunsetPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 2, cancelSunsetIntent,0);
+                    am.cancel(cancelSunrisePendingIntent);
+                    am.cancel(cancelSunsetPendingIntent);
+                }    
                 List<String> allOverlays = new ArrayList<String>();
                 allOverlays.addAll(mOverlayCompose);
                 

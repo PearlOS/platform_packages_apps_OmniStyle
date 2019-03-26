@@ -57,9 +57,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="theme_compose">Compose</string>
     <string name="theme_time">Time based themeing</string>
     <string name="button_apply">Apply</string>
+    <string name="nightday" translatable="false">Day and Night</string>
     <string name="overlay_preview_text" translatable="false">Example Text</string>
     <string name="overlay_preview_switch" translatable="false">Example Switch</string>
     <string name="overlay_preview_button1" translatable="false" >Yes</string>
     <string name="overlay_preview_button2" translatable="false" >No</string>
     <string name="notification_overlay_info">Reboot is required after\nchanging notification overlay</string>
+    <string name="schedule1" translatable="false">Schedule</string>
+    <string name="schedule2" translatable="false">Auto</string>
+    <string name="category1" translatable="false">Theme 1:</string>
+    <string name="category2" translatable="false">Theme 2:</string>
+    <string name="start" translatable="false">Day:</string>
+    <string name="end" translatable="false">Night:</string>
+    <string name="hint_sunrise" translatable="false">Day</string>
+    <string name="hint_sunset" translatable="false">Night</string>
+    <string name="hints" translatable="false">Show hints</string>
+    <string name="dialog_text" translatable="false">\n<b>-</b> Setting time to <b>\"Schedule\"</b> will allow you to set custom time\n\n
+                                                    <b>-</b> Setting time to <b>\"Auto\"</b> will set the themes on 6AM/7PM\n\n\n
+                                                    <b>-</b> Time for \"Day\" should be <b>less</b> than \"Night\"\n\n\n
+                                                    <b>-</b> The themes may not be set exactly at the time set\n\n
+                                                    <b>-</b> <b>Optimising OmniStyles for battery</b> may cause themes to not be set while device is <b>dozing</b>
+                                                    <b>-</b> Setting themes with the <b>\"Compose Themes\"</b> Activity will reset all the scheduled themes.
+    </string>
+
 </resources>

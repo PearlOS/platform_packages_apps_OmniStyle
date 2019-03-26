@@ -25,63 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SET_TIME" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <application
         android:allowBackup="false"
         android:label="OmniStyle"
         android:icon="@drawable/omnirom_logo"
+        android:persistent="true"
         android:theme="@style/Theme.OmniStyle" >
-        <activity
-            android:name=".BrowseHeaderActivity"
-            android:label="@string/browse_header" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".PickHeaderActivity"
-            android:label="@string/pick_header">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".BrowseThemeHeaderActivity"
-            android:label="@string/browse_theme_header" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-<!--        <activity
-            android:name=".BrowseWallsActivity"
-            android:label="@string/browse_walls"
-            android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".BrowseWallsFilterActivity"
-            android:label="@string/browse_theme_walls"
-            android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity-alias
-            android:name=".WallpaperActivity"
-            android:label="@string/omni_walls"
-            android:targetActivity="org.omnirom.omnistyle.BrowseWallsActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SET_WALLPAPER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity-alias> -->
         <activity
             android:name="org.omnirom.omnistyle.BrowseThemesActivity"
             android:label="@string/pick_theme"
@@ -100,76 +54,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<!--        <activity
-            android:name=".weather"
-            android:label="LockClock (mono)" >
+        <activity
+            android:name="org.omnirom.omnistyle.NightDayActivity"
+            android:label="@string/nightday"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
-                <action android:name="org.omnirom.WeatherIconPack" />
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".weather_color"
-            android:label="LockClock (color)" >
+        <receiver
+            android:name="org.omnirom.omnistyle.SunriseThemeAlarm"
+            android:action="android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":sunrise"/>
+        <receiver
+            android:name="org.omnirom.omnistyle.SunsetThemeAlarm"
+            android:action="android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+            android:enabled="true"
+            android:exported="true" 
+            android:process=":sunset"/>
+        <receiver
+            android:name="org.omnirom.omnistyle.BootBroadcastReceiver"
+            android:enabled="true"
+            android:process=":onboot">
             <intent-filter>
-                <action android:name="org.omnirom.WeatherIconPack" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".nature"
-            android:label="Nature" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".poly"
-            android:label="Poly" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".naturerandom"
-            android:label="Nature (random)" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".wavvy"
-            android:label="Wavvy" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".omni_syed"
-            android:label="Syed" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".theme"
-            android:label="Theme" >
-            <intent-filter>
-                <action android:name="org.omnirom.DaylightHeaderPack1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity> -->
+        </receiver>
     </application>
 </manifest>

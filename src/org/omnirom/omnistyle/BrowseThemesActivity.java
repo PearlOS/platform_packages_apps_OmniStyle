@@ -21,7 +21,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -71,6 +70,7 @@ public class BrowseThemesActivity extends Activity {
         public ImageView mThemeImage;
         public TextView mThemeName;
         public ImageView mThemeImageOverlay;
+        public ImageView mNightDayOverlay;
 
         ImageHolder(View itemView) {
             super(itemView);
@@ -78,6 +78,7 @@ public class BrowseThemesActivity extends Activity {
             mThemeImage = (ImageView) itemView.findViewById(R.id.theme_image);
             mThemeName = (TextView) itemView.findViewById(R.id.theme_name);
             mThemeImageOverlay = (ImageView) itemView.findViewById(R.id.theme_image_overlay);
+            mNightDayOverlay = (ImageView) itemView.findViewById(R.id.nightday_image_overlay);
             rootView.setOnClickListener(this);
         }
 
@@ -92,7 +93,10 @@ public class BrowseThemesActivity extends Activity {
                 if (wi.mComposePlaceholder) {
                     Intent composeIntent = new Intent(BrowseThemesActivity.this, ComposeThemeActivity.class);
                     startActivity(composeIntent);
-                } else {
+                } else if (wi.mNightDayPlaceholder) {
+                        Intent composeIntent = new Intent(BrowseThemesActivity.this, NightDayActivity.class);
+                        startActivity(composeIntent);
+                    } else {
                     List<String> overlayList = new ArrayList<>();
                     overlayList.add(wi.mAccent);
                     overlayList.add(wi.mPrimary);
@@ -126,8 +130,9 @@ public class BrowseThemesActivity extends Activity {
             final ImageHolder holder = (ImageHolder) h;
             OverlayUtils.ThemeInfo wi = mThemeList.get(position);
             holder.mThemeImageOverlay.setVisibility(wi.mComposePlaceholder ? View.VISIBLE : View.GONE);
+            holder.mNightDayOverlay.setVisibility(wi.mNightDayPlaceholder ? View.VISIBLE : View.GONE);
             if (wi.mThumbNail != null) {
-                if (wi.mComposePlaceholder) {
+                if (wi.mComposePlaceholder || wi.mNightDayPlaceholder ) {
                     holder.mThemeImage.setImageDrawable(wi.mThumbNail);
                 } else if (wi.mThumbNailBlur != null && !wi.equals(mCurrentTheme)) {
                     holder.mThemeImage.setImageBitmap(wi.mThumbNailBlur);
@@ -137,7 +142,7 @@ public class BrowseThemesActivity extends Activity {
             } else {
                 holder.mThemeImage.setImageDrawable(new ColorDrawable(Color.DKGRAY));
             }
-            if (!wi.mComposePlaceholder) {
+            if (!wi.mComposePlaceholder && !wi.mNightDayPlaceholder) {
                 if (wi.mDefaultPlaceholder) {
                     holder.mThemeName.setTextColor(mDefaultColor);
                 } else {
@@ -239,15 +244,26 @@ public class BrowseThemesActivity extends Activity {
         mThemeList.add(0, defaultItem);
 
         OverlayUtils.ThemeInfo composeItem = new OverlayUtils.ThemeInfo();
-        composeItem.mName = getResources().getString(R.string.theme_compose);
+        composeItem.mName = getResources().getString(R.string.compose_theme);
         composeItem.mComposePlaceholder = true;
         composeItem.mDefaultPlaceholder = false;
+        composeItem.mNightDayPlaceholder = false;
         BitmapDrawable defaultThumbnail = getDefaultThemeThumbnail();
         defaultThumbnail = new BitmapDrawable(getResources(), blur(defaultThumbnail.getBitmap()));
         int shadow = Color.argb(128, 0, 0, 0);
         defaultThumbnail.setColorFilter(shadow, PorterDuff.Mode.SRC_ATOP);
         composeItem.mThumbNail = defaultThumbnail;
         mThemeList.add(0, composeItem);
+
+        OverlayUtils.ThemeInfo nightday = new OverlayUtils.ThemeInfo();
+        nightday.mName = getResources().getString(R.string.nightday);
+        nightday.mNightDayPlaceholder = true;
+        nightday.mComposePlaceholder = false;
+        nightday.mDefaultPlaceholder = false;
+        defaultThumbnail = new BitmapDrawable(getResources(), blur(defaultThumbnail.getBitmap()));
+        defaultThumbnail.setColorFilter(shadow, PorterDuff.Mode.SRC_ATOP);
+        nightday.mThumbNail = defaultThumbnail;
+        mThemeList.add(0, nightday);
     
         if (DEBUG) Log.d(TAG, "mThemeList = " + mThemeList);
     }
