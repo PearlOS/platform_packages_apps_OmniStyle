@@ -26,114 +26,126 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/switchbar_background" >
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/frame_border"
+            android:paddingStart="4dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:orientation="horizontal">
+                android:background="@drawable/switchbar_background"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="@string/theme_accent"
-                    android:textAppearance="?android:attr/textAppearanceListItem"/>
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
 
-                <Spinner
-                    android:id="@+id/accent_select"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:backgroundTint="?android:attr/textColorPrimary"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="@string/theme_accent"
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/accent_select"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:backgroundTint="?android:attr/textColorPrimary" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="@string/theme_primary"
-                    android:textAppearance="?android:attr/textAppearanceListItem"/>
-
-                <Spinner
-                    android:id="@+id/primary_select"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:backgroundTint="?android:attr/textColorPrimary"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="@string/theme_notification"
-                    android:textAppearance="?android:attr/textAppearanceListItem"/>
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
 
-                <Spinner
-                    android:id="@+id/notification_select"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="@string/theme_primary"
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
+
+                    <Spinner
+                        android:id="@+id/primary_select"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:backgroundTint="?android:attr/textColorPrimary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:backgroundTint="?android:attr/textColorPrimary"/>
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="@string/theme_notification"
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
+
+                    <Spinner
+                        android:id="@+id/notification_select"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:backgroundTint="?android:attr/textColorPrimary" />
+                </LinearLayout>
+
             </LinearLayout>
+        </FrameLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:orientation="horizontal">
-
-                 <Switch
-                     android:id="@+id/themeSwitch"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/theme_time"
-                     android:checked="false"
-                     android:gravity="left"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
+        <View
+            android:id="@+id/divider5"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="visible" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/frame_border"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:id="@+id/overlay_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/overlay_preview_header"
@@ -142,7 +154,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     android:gravity="center_vertical"
                     android:padding="10dp"
                     android:text="@string/overlay_preview_text"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -158,13 +170,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         android:layout_weight="1"
                         android:paddingStart="10dp"
                         android:text="@string/overlay_preview_text"
-                        android:textAppearance="?android:attr/textAppearanceListItem"/>
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
 
                     <ImageView
                         android:id="@+id/overlay_preview_image"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/ic_android"/>
+                        android:src="@drawable/ic_android" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,13 +193,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         android:layout_weight="1"
                         android:paddingStart="10dp"
                         android:text="@string/overlay_preview_switch"
-                        android:textAppearance="?android:attr/textAppearanceListItem"/>
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
 
                     <Switch
                         android:id="@+id/overlay_preview_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="10dp"/>
+                        android:paddingStart="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -200,7 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <SeekBar
                         android:id="@+id/overlay_preview_seek"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -209,63 +221,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="10dp">
-                    
+
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                    
+                        android:layout_weight="1" />
+
                     <Button
                         android:id="@+id/overlay_preview_button1"
                         style="?android:attr/buttonBarPositiveButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/overlay_preview_button1"/>
-                    
+                        android:text="@string/overlay_preview_button1" />
+
                     <Button
                         android:id="@+id/overlay_preview_button2"
                         style="?android:attr/buttonBarPositiveButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/overlay_preview_button2"/>
+                        android:text="@string/overlay_preview_button2" />
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:padding="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_24dp"/>
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:maxLines="2"
-                android:text="@string/notification_overlay_info"/>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/overlay_apply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:background="?android:attr/colorAccent"
-                android:textColor="@android:color/white"
-                android:text="@string/button_apply"/>
-        </LinearLayout>
+                android:background="@drawable/rounded_button"
+                android:maxHeight="35dp"
+                android:minHeight="35dp"
+                android:layout_centerInParent="true"
+                android:text="@string/button_apply"
+                android:textColor="?android:attr/colorPrimary" />
+        </RelativeLayout>
     </LinearLayout>
 
     <ProgressBar
@@ -276,4 +271,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_gravity="center"
         android:visibility="gone"/>
 </FrameLayout>
-
