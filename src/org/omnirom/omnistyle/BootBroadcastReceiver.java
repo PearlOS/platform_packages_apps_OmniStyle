@@ -53,8 +53,8 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
 
 
             long time = System.currentTimeMillis();
-            long timeexpnight = clockNightHour*60*60*1000+clockNightMin*60*1000;
-            long timeexpday = clockDayHour*60*60*1000+clockDayMin*60*1000;
+            long timeexpnight = getTime(clockNightHour, clockNightMin);
+            long timeexpday = getTime(clockDayHour, clockDayMin);
             mOverlayCompose.add(OverlayUtils.KEY_THEMES_DISABLED);
             mOverlayCompose.add(OverlayUtils.KEY_THEMES_DISABLED);
             mOverlayCompose.add(OverlayUtils.KEY_THEMES_DISABLED);
@@ -78,5 +78,12 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
             mNightDay.setSunsetThemeAlarm(clockDayHour, clockDayMin);
             mNightDay.setSunriseThemeAlarm(clockNightHour, clockNightMin);
         }
+    }
+    
+    public long getTime(int hour, int min) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, min);
+        return calendar.getTimeInMillis();
     }
 }
