@@ -21,6 +21,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
+import android.app.AlarmManager;
+import android.content.Intent;
+import android.app.PendingIntent;
+import android.content.pm.PackageManager;
+import android.content.ComponentName;
 
 import java.util.Calendar;
 import java.util.Arrays;
@@ -36,8 +42,6 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
     private List<String> mAppOverlays;
     private List<String> mOverlayCompose = new ArrayList<>();
     private OverlayUtils mOverlayUtils;
-
-    private NightDayActivity mNightDay = new NightDayActivity();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -75,15 +79,62 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
                 allOverlays.addAll(mAppOverlays);
             }
             mOverlayUtils.enableThemeList(allOverlays);
-            mNightDay.setSunsetThemeAlarm(clockDayHour, clockDayMin);
-            mNightDay.setSunriseThemeAlarm(clockNightHour, clockNightMin);
+            setSunriseThemeAlarm(context, clockDayHour, clockDayMin);
+            setSunsetThemeAlarm(context, clockNightHour, clockNightMin);
+            Log.d("ThemeAlarmConst", ""+clockDayHour+" "+clockDayMin+" "+clockNightHour+" "+clockNightMin);
         }
     }
-    
+
     public long getTime(int hour, int min) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, min);
         return calendar.getTimeInMillis();
+    }
+
+    public void setSunriseThemeAlarm(Context mContext, int hour, int min) {
+
+        long time = getTime(hour,min);
+        //Avoid setting alarm in past
+        if (time < System.currentTimeMillis()) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, min);
+            time = calendar.getTimeInMillis();
+        }
+
+        AlarmManager am = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+
+        ComponentName receiver = new ComponentName(mContext, SunriseThemeAlarm.class);
+        PackageManager pm = mContext.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+
+        Intent i = new Intent(mContext, SunriseThemeAlarm.class);
+
+        PendingIntent pi = PendingIntent.getBroadcast(mContext, 1, i, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
+    }
+
+    public void setSunsetThemeAlarm(Context mContext, int hour, int min) {
+
+        long time = getTime(hour,min);
+
+        AlarmManager am = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+
+        ComponentName receiver = new ComponentName(mContext, SunsetThemeAlarm.class);
+        PackageManager pm = mContext.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+
+        Intent j = new Intent(mContext, SunsetThemeAlarm.class);
+
+        PendingIntent pi = PendingIntent.getBroadcast(mContext, 2, j, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
     }
 }
