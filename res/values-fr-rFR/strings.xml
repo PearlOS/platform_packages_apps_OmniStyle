@@ -17,14 +17,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="pick_theme">Selecione um tema</string>
-    <string name="theme_disable">Predefinição</string>
-    <string name="compose_theme">Compor tema</string>
-    <string name="theme_accent">Realce</string>
-    <string name="theme_primary">Principal</string>
-    <string name="theme_notification">Notificação</string>
-    <string name="theme_compose">Compor</string>
+    <string name="pick_theme">Select theme</string>
+    <string name="theme_disable">Default</string>
+    <string name="compose_theme">Compose theme</string>
+    <string name="theme_accent">Accent</string>
+    <string name="theme_primary">Primary</string>
+    <string name="theme_notification">Notification</string>
+    <string name="theme_compose">Compose</string>
     <string name="theme_time">Time based themeing</string>
-    <string name="button_apply">Aplicar</string>
-    <string name="notification_overlay_info">É necessário reiniciar depois de\nalterar o tema das notificações</string>
+    <string name="button_apply">Apply</string>
+    <string name="notification_overlay_info">Reboot is required after\nchanging notification overlay</string>
 </resources>
